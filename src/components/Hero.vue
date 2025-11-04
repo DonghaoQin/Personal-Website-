@@ -4,26 +4,21 @@
       <div class="hero-image">
         <img src="https://via.placeholder.com/200" alt="Your Photo" />
       </div>
-      <h1 class="hero-title">Hi, I'm <span class="highlight">Your Name</span></h1>
-      <p class="hero-subtitle">Full Stack Developer | Problem Solver | Tech Enthusiast</p>
+      <h1 class="hero-title">{{ $t('hero.greeting') }} <span class="highlight">{{ $t('hero.name') }}</span></h1>
+      <p class="hero-subtitle">{{ $t('hero.title') }}</p>
       <p class="hero-description">
-        I'm a passionate developer who loves building modern web applications and solving complex problems.
-        Welcome to my portfolio where I showcase my journey and projects.
+        {{ $t('hero.description') }}
       </p>
       <div class="skills-tags">
-        <span class="tag" v-for="skill in coreSkills" :key="skill">{{ skill }}</span>
+        <span class="tag" v-for="skill in $t('hero.coreSkills')" :key="skill">{{ skill }}</span>
       </div>
       <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        <router-link to="/projects" class="btn btn-primary">{{ $t('hero.viewProjects') }}</router-link>
+        <router-link to="/contact" class="btn btn-secondary">{{ $t('hero.contactMe') }}</router-link>
       </div>
     </div>
   </section>
 </template>
-
-<script setup>
-const coreSkills = ['Vue.js', 'React', 'Node.js', 'Python', 'JavaScript', 'TypeScript']
-</script>
 
 <style scoped>
 .hero {

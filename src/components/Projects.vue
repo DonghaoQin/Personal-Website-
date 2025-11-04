@@ -1,8 +1,8 @@
 <template>
   <section id="projects" class="projects">
     <div class="container">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle">Here are some of my recent works</p>
+      <h2 class="section-title">{{ $t('projects.title') }}</h2>
+      <p class="section-subtitle">{{ $t('projects.subtitle') }}</p>
 
       <!-- Filter buttons -->
       <div class="filter-buttons">
@@ -10,7 +10,7 @@
           :class="['filter-btn', { active: selectedFilter === 'all' }]"
           @click="selectedFilter = 'all'"
         >
-          All
+          {{ $t('projects.all') }}
         </button>
         <button
           v-for="tech in allTechnologies"
@@ -42,10 +42,10 @@
             </div>
             <div class="project-links">
               <a v-if="project.demo" :href="project.demo" target="_blank" class="project-link">
-                <span>Demo</span>
+                <span>{{ $t('projects.demo') }}</span>
               </a>
               <a v-if="project.code" :href="project.code" target="_blank" class="project-link">
-                <span>Code</span>
+                <span>{{ $t('projects.code') }}</span>
               </a>
             </div>
           </div>
@@ -57,14 +57,16 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const selectedFilter = ref('all')
 
-const projects = [
+const projects = computed(() => [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce platform with payment integration, product management, and user authentication.',
+    title: t('projects.sampleProjects.ecommerce.title'),
+    description: t('projects.sampleProjects.ecommerce.description'),
     image: 'https://via.placeholder.com/400x250',
     technologies: ['Vue.js', 'Node.js', 'MongoDB'],
     demo: 'https://example.com',
@@ -72,8 +74,8 @@ const projects = [
   },
   {
     id: 2,
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates and team collaboration features.',
+    title: t('projects.sampleProjects.taskManager.title'),
+    description: t('projects.sampleProjects.taskManager.description'),
     image: 'https://via.placeholder.com/400x250',
     technologies: ['React', 'Firebase', 'TypeScript'],
     demo: 'https://example.com',
@@ -81,8 +83,8 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Weather Dashboard',
-    description: 'A beautiful weather dashboard that displays current weather and forecasts using external APIs.',
+    title: t('projects.sampleProjects.weather.title'),
+    description: t('projects.sampleProjects.weather.description'),
     image: 'https://via.placeholder.com/400x250',
     technologies: ['Vue.js', 'API', 'CSS'],
     demo: 'https://example.com',
@@ -90,18 +92,18 @@ const projects = [
   },
   {
     id: 4,
-    title: 'Blog Platform',
-    description: 'A modern blog platform with markdown support, comments, and social sharing capabilities.',
+    title: t('projects.sampleProjects.blog.title'),
+    description: t('projects.sampleProjects.blog.description'),
     image: 'https://via.placeholder.com/400x250',
     technologies: ['Node.js', 'Express', 'PostgreSQL'],
     demo: 'https://example.com',
     code: 'https://github.com'
   }
-]
+])
 
 const allTechnologies = computed(() => {
   const techSet = new Set()
-  projects.forEach(project => {
+  projects.value.forEach(project => {
     project.technologies.forEach(tech => techSet.add(tech))
   })
   return Array.from(techSet)
@@ -109,9 +111,9 @@ const allTechnologies = computed(() => {
 
 const filteredProjects = computed(() => {
   if (selectedFilter.value === 'all') {
-    return projects
+    return projects.value
   }
-  return projects.filter(project =>
+  return projects.value.filter(project =>
     project.technologies.includes(selectedFilter.value)
   )
 })

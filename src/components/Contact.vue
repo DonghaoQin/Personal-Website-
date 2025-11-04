@@ -1,8 +1,8 @@
 <template>
   <section id="contact" class="contact">
     <div class="container">
-      <h2 class="section-title">Get In Touch</h2>
-      <p class="section-subtitle">Feel free to reach out for opportunities or just to say hi!</p>
+      <h2 class="section-title">{{ $t('contact.title') }}</h2>
+      <p class="section-subtitle">{{ $t('contact.subtitle') }}</p>
 
       <div class="contact-content">
         <div class="contact-info">
@@ -14,7 +14,7 @@
               </svg>
             </div>
             <div>
-              <h3>Email</h3>
+              <h3>{{ $t('contact.email') }}</h3>
               <a href="mailto:your.email@example.com">your.email@example.com</a>
             </div>
           </div>
@@ -26,7 +26,7 @@
               </svg>
             </div>
             <div>
-              <h3>GitHub</h3>
+              <h3>{{ $t('contact.github') }}</h3>
               <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
             </div>
           </div>
@@ -40,7 +40,7 @@
               </svg>
             </div>
             <div>
-              <h3>LinkedIn</h3>
+              <h3>{{ $t('contact.linkedin') }}</h3>
               <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a>
             </div>
           </div>
@@ -52,14 +52,14 @@
               </svg>
             </div>
             <div>
-              <h3>Phone</h3>
+              <h3>{{ $t('contact.phone') }}</h3>
               <a href="tel:+1234567890">+1 (234) 567-890</a>
             </div>
           </div>
         </div>
 
         <div class="social-links">
-          <h3>Connect With Me</h3>
+          <h3>{{ $t('contact.connectWithMe') }}</h3>
           <div class="social-icons">
             <a href="https://github.com/yourusername" target="_blank" class="social-icon" title="GitHub">
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
@@ -83,7 +83,7 @@
   </section>
 
   <footer class="footer">
-    <p>&copy; 2024 Your Name. Built with Vue.js</p>
+    <p>&copy; 2024 {{ $t('hero.name') }}. {{ $t('contact.footer') }}</p>
   </footer>
 </template>
 

@@ -2,20 +2,23 @@
   <nav class="navbar">
     <div class="nav-container">
       <div class="nav-logo">
-        <a href="#home">Your Name</a>
+        <router-link to="/">{{ $t('hero.name') }}</router-link>
       </div>
       <ul class="nav-menu" :class="{ active: menuActive }">
         <li class="nav-item">
-          <a href="#home" class="nav-link" @click="closeMenu">Home</a>
+          <router-link to="/" class="nav-link" @click="closeMenu">{{ $t('nav.home') }}</router-link>
         </li>
         <li class="nav-item">
-          <a href="#projects" class="nav-link" @click="closeMenu">Projects</a>
+          <router-link to="/projects" class="nav-link" @click="closeMenu">{{ $t('nav.projects') }}</router-link>
         </li>
         <li class="nav-item">
-          <a href="#skills" class="nav-link" @click="closeMenu">Skills</a>
+          <router-link to="/skills" class="nav-link" @click="closeMenu">{{ $t('nav.skills') }}</router-link>
         </li>
         <li class="nav-item">
-          <a href="#contact" class="nav-link" @click="closeMenu">Contact</a>
+          <router-link to="/contact" class="nav-link" @click="closeMenu">{{ $t('nav.contact') }}</router-link>
+        </li>
+        <li class="nav-item nav-lang">
+          <LanguageSwitcher />
         </li>
       </ul>
       <div class="nav-toggle" @click="toggleMenu">
@@ -29,6 +32,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import LanguageSwitcher from './LanguageSwitcher.vue'
 
 const menuActive = ref(false)
 
@@ -74,6 +78,7 @@ const closeMenu = () => {
   gap: 2rem;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-link {
@@ -83,8 +88,13 @@ const closeMenu = () => {
   transition: color 0.3s;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.router-link-active {
   color: #42b883;
+}
+
+.nav-lang {
+  margin-left: 1rem;
 }
 
 .nav-toggle {
@@ -125,6 +135,10 @@ const closeMenu = () => {
 
   .nav-item {
     margin: 1rem 0;
+  }
+
+  .nav-lang {
+    margin-left: 0;
   }
 }
 </style>

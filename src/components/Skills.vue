@@ -1,12 +1,12 @@
 <template>
   <section id="skills" class="skills">
     <div class="container">
-      <h2 class="section-title">Skills & Experience</h2>
-      <p class="section-subtitle">My technical expertise and professional journey</p>
+      <h2 class="section-title">{{ $t('skills.title') }}</h2>
+      <p class="section-subtitle">{{ $t('skills.subtitle') }}</p>
 
       <!-- Skills Grid -->
       <div class="skills-section">
-        <h3 class="subsection-title">Technical Skills</h3>
+        <h3 class="subsection-title">{{ $t('skills.technicalSkills') }}</h3>
         <div class="skills-grid">
           <div v-for="category in skillCategories" :key="category.name" class="skill-category">
             <h4 class="category-title">{{ category.name }}</h4>
@@ -27,7 +27,7 @@
 
       <!-- Timeline -->
       <div class="timeline-section">
-        <h3 class="subsection-title">Experience & Education</h3>
+        <h3 class="subsection-title">{{ $t('skills.experienceEducation') }}</h3>
         <div class="timeline">
           <div v-for="(item, index) in timeline" :key="index" class="timeline-item">
             <div class="timeline-dot"></div>
@@ -45,9 +45,14 @@
 </template>
 
 <script setup>
-const skillCategories = [
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+const skillCategories = computed(() => [
   {
-    name: 'Frontend',
+    name: t('skills.categories.frontend'),
     skills: [
       { name: 'Vue.js', level: 90 },
       { name: 'React', level: 85 },
@@ -56,7 +61,7 @@ const skillCategories = [
     ]
   },
   {
-    name: 'Backend',
+    name: t('skills.categories.backend'),
     skills: [
       { name: 'Node.js', level: 85 },
       { name: 'Python', level: 80 },
@@ -65,7 +70,7 @@ const skillCategories = [
     ]
   },
   {
-    name: 'Database & Tools',
+    name: t('skills.categories.database'),
     skills: [
       { name: 'MongoDB', level: 80 },
       { name: 'PostgreSQL', level: 75 },
@@ -73,34 +78,34 @@ const skillCategories = [
       { name: 'Docker', level: 70 }
     ]
   }
-]
+])
 
-const timeline = [
+const timeline = computed(() => [
   {
     date: '2023 - Present',
-    title: 'Senior Full Stack Developer',
-    company: 'Tech Company Inc.',
-    description: 'Leading development of modern web applications using Vue.js and Node.js. Mentoring junior developers and architecting scalable solutions.'
+    title: t('skills.timeline.senior.title'),
+    company: t('skills.timeline.senior.company'),
+    description: t('skills.timeline.senior.description')
   },
   {
     date: '2021 - 2023',
-    title: 'Full Stack Developer',
-    company: 'Startup XYZ',
-    description: 'Developed and maintained multiple client projects. Worked with React, Vue.js, and Node.js to deliver high-quality web applications.'
+    title: t('skills.timeline.fullstack.title'),
+    company: t('skills.timeline.fullstack.company'),
+    description: t('skills.timeline.fullstack.description')
   },
   {
     date: '2019 - 2021',
-    title: 'Frontend Developer',
-    company: 'Digital Agency',
-    description: 'Built responsive and interactive user interfaces. Collaborated with designers and backend developers to create seamless user experiences.'
+    title: t('skills.timeline.frontend.title'),
+    company: t('skills.timeline.frontend.company'),
+    description: t('skills.timeline.frontend.description')
   },
   {
     date: '2015 - 2019',
-    title: 'Bachelor of Computer Science',
-    company: 'University Name',
-    description: 'Studied computer science fundamentals, algorithms, data structures, and software engineering principles.'
+    title: t('skills.timeline.education.title'),
+    company: t('skills.timeline.education.company'),
+    description: t('skills.timeline.education.description')
   }
-]
+])
 </script>
 
 <style scoped>
