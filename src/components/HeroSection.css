@@ -1,86 +1,3 @@
-<template>
-  <section class="hero-section">
-    <div class="hero-container">
-      <!-- Orbiting Elements - Behind the card -->
-      <div class="orbit-container">
-        <!-- Edge/Chromium Logo -->
-        <div class="orbit-item orbit-1">
-          <div class="orbit-icon edge-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21.86 7.85c-.77-2.6-2.45-4.82-4.73-6.24C15.14.46 12.77 0 10.26 0 7.14 0 4.28 1.19 2.16 3.25.04 5.31-0.67 8.07.41 10.81c.77 2.6 2.45 4.82 4.73 6.24 1.99 1.15 4.36 1.61 6.87 1.61 3.12 0 5.98-1.19 8.1-3.25 2.12-2.06 2.83-4.82 1.75-7.56zm-9.6 11.4c-2.26 0-4.36-.46-6.04-1.46-1.98-1.15-3.43-3.08-4.08-5.4-.65-2.32-.19-4.73 1.27-6.79 1.46-2.06 3.71-3.25 6.35-3.25 2.26 0 4.36.46 6.04 1.46 1.98 1.15 3.43 3.08 4.08 5.4.65 2.32.19 4.73-1.27 6.79-1.46 2.06-3.71 3.25-6.35 3.25z"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Ethereum Logo -->
-        <div class="orbit-item orbit-2">
-          <div class="orbit-icon eth-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Orange Circle 1 -->
-        <div class="orbit-item orbit-3">
-          <div class="orbit-icon orange-circle">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <circle cx="12" cy="12" r="10"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Orange Circle 2 -->
-        <div class="orbit-item orbit-4">
-          <div class="orbit-icon orange-circle">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Profile Photo - Orbiting -->
-        <div class="orbit-item orbit-5">
-          <div class="orbit-icon profile-orbit">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="秦栋浩 Profile"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Central Card -->
-      <div class="profile-card">
-        <div class="card-content">
-          <div class="text-content">
-            <h1 class="name">秦栋浩</h1>
-            <div class="roles-list">
-              <div v-for="(role, index) in roles" :key="index" class="role-item">
-                <span class="role-bullet">▸</span>
-                <span class="role-text">{{ role }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-
-<script setup>
-const roles = [
-  '前端设计师 / UI-UX',
-  '把“想法”变成“能点的页面”的那个人', 
-  '产品思维的工程师 & BIS 分析',
-  '数据友好：Python / R / SQL',
-  '项目：Auslan（教学平台）',
-  '项目：Elderly（教学平台）',
-  '目标：智能前端 / AI 应用落地'
-]
-</script>
-
-<style scoped>
 /* Hero Section Container */
 .hero-section {
   min-height: 100vh;
@@ -158,22 +75,6 @@ const roles = [
   color: white;
 }
 
-.profile-orbit {
-  width: 150px;
-  height: 150px;
-  border: 5px solid #F5A623;
-  background: white;
-  padding: 0;
-  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.4);
-}
-
-.profile-orbit img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
 /* Orbit Animations - Different speeds and paths */
 .orbit-1 {
   animation: orbit-1 15s linear infinite;
@@ -189,10 +90,6 @@ const roles = [
 
 .orbit-4 {
   animation: orbit-4 22s linear infinite;
-}
-
-.orbit-5 {
-  animation: orbit-5 25s linear infinite;
 }
 
 @keyframes orbit-1 {
@@ -231,15 +128,6 @@ const roles = [
   }
 }
 
-@keyframes orbit-5 {
-  from {
-    transform: rotate(45deg) translateX(350px) rotate(-45deg);
-  }
-  to {
-    transform: rotate(405deg) translateX(350px) rotate(-405deg);
-  }
-}
-
 /* Profile Card - Higher z-index */
 .profile-card {
   position: relative;
@@ -252,7 +140,7 @@ const roles = [
     0 0 0 1px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   max-width: 700px;
-  width: 50%;
+  width: 100%;
 }
 
 .profile-card:hover {
@@ -264,13 +152,13 @@ const roles = [
 
 .card-content {
   display: flex;
-  justify-content: center;
+  gap: 2rem;
   align-items: center;
 }
 
 /* Text Content */
 .text-content {
-  width: 100%;
+  flex: 1;
 }
 
 .name {
@@ -314,6 +202,33 @@ const roles = [
   font-weight: 500;
 }
 
+/* Profile Photo */
+.profile-photo-container {
+  flex-shrink: 0;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #F5A623;
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.3);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.profile-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(245, 166, 35, 0.4);
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero-container {
@@ -325,6 +240,7 @@ const roles = [
   }
 
   .card-content {
+    flex-direction: column-reverse;
     text-align: center;
   }
 
@@ -337,10 +253,9 @@ const roles = [
     font-size: 0.9rem;
   }
 
-  .profile-orbit {
-    width: 200px;
-    height: 200px;
-    border: 4px solid #F5A623;
+  .profile-photo {
+    width: 120px;
+    height: 120px;
   }
 
   .orbit-icon {
@@ -387,15 +302,6 @@ const roles = [
     }
     to {
       transform: rotate(630deg) translateX(220px) rotate(-630deg);
-    }
-  }
-
-  @keyframes orbit-5 {
-    from {
-      transform: rotate(45deg) translateX(240px) rotate(-45deg);
-    }
-    to {
-      transform: rotate(405deg) translateX(240px) rotate(-405deg);
     }
   }
 }
@@ -457,14 +363,4 @@ const roles = [
       transform: rotate(630deg) translateX(160px) rotate(-630deg);
     }
   }
-
-  @keyframes orbit-5 {
-    from {
-      transform: rotate(45deg) translateX(180px) rotate(-45deg);
-    }
-    to {
-      transform: rotate(405deg) translateX(180px) rotate(-405deg);
-    }
-  }
 }
-</style>

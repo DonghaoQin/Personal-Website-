@@ -1,26 +1,25 @@
 <template>
   <nav class="navbar">
     <div class="nav-container">
-      <div class="nav-logo">
-        <router-link to="/">{{ $t('hero.name') }}</router-link>
+      <div class="nav-pill">
+        <ul class="nav-menu" :class="{ active: menuActive }">
+          <li class="nav-item">
+            <router-link to="/" class="nav-link" @click="closeMenu">{{ $t('nav.home') }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/projects" class="nav-link" @click="closeMenu">{{ $t('nav.projects') }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/skills" class="nav-link" @click="closeMenu">{{ $t('nav.skills') }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/contact" class="nav-link" @click="closeMenu">{{ $t('nav.contact') }}</router-link>
+          </li>
+          <li class="nav-item nav-lang">
+            <LanguageSwitcher />
+          </li>
+        </ul>
       </div>
-      <ul class="nav-menu" :class="{ active: menuActive }">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link" @click="closeMenu">{{ $t('nav.home') }}</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/projects" class="nav-link" @click="closeMenu">{{ $t('nav.projects') }}</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/skills" class="nav-link" @click="closeMenu">{{ $t('nav.skills') }}</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/contact" class="nav-link" @click="closeMenu">{{ $t('nav.contact') }}</router-link>
-        </li>
-        <li class="nav-item nav-lang">
-          <LanguageSwitcher />
-        </li>
-      </ul>
       <div class="nav-toggle" @click="toggleMenu">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -50,57 +49,71 @@ const closeMenu = () => {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-container {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-.nav-logo a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #2c3e50;
-  text-decoration: none;
+.nav-pill {
+  background: white;
+  border-radius: 50px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 20px rgba(240, 158, 5, 0.886);
+  backdrop-filter: blur(10px);
 }
 
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1.2rem;
   margin: 0;
   padding: 0;
   align-items: center;
+}
+
+.nav-item {
+  margin: 0;
 }
 
 .nav-link {
   color: #2c3e50;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  transition: all 0.3s;
+  display: block;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  background: #ff9500;
+  color: white;
+}
+
 .nav-link.router-link-active {
-  color: #42b883;
+  background: #ff9500;
+  color: white;
 }
 
 .nav-lang {
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
 
 .nav-toggle {
   display: none;
   flex-direction: column;
   cursor: pointer;
+  position: absolute;
+  right: 2rem;
 }
 
 .bar {
@@ -111,22 +124,48 @@ const closeMenu = () => {
   transition: 0.3s;
 }
 
+@media (max-width: 968px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .nav-pill {
+    padding: 0.4rem;
+  }
+
+  .nav-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-menu {
+    gap: 0.3rem;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-toggle {
     display: flex;
   }
 
+  .nav-pill {
+    position: relative;
+  }
+
   .nav-menu {
     position: fixed;
     left: -100%;
-    top: 70px;
+    top: 80px;
     flex-direction: column;
     background-color: white;
-    width: 100%;
+    width: calc(100% - 2rem);
+    margin: 0 1rem;
     text-align: center;
     transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-    padding: 2rem 0;
+    box-shadow: 0 10px 27px rgba(161, 48, 48, 0.1);
+    padding: 1.5rem;
+    border-radius: 20px;
+    gap: 0.5rem;
   }
 
   .nav-menu.active {
@@ -134,11 +173,17 @@ const closeMenu = () => {
   }
 
   .nav-item {
-    margin: 1rem 0;
+    width: 100%;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 1rem;
   }
 
   .nav-lang {
     margin-left: 0;
+    margin-top: 0.5rem;
   }
 }
 </style>

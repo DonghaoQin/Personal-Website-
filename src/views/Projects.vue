@@ -4,51 +4,48 @@
       <h2 class="section-title">{{ $t('projects.title') }}</h2>
       <p class="section-subtitle">{{ $t('projects.subtitle') }}</p>
 
-      <!-- Filter buttons -->
-      <div class="filter-buttons">
-        <button
-          :class="['filter-btn', { active: selectedFilter === 'all' }]"
-          @click="selectedFilter = 'all'"
-        >
-          {{ $t('projects.all') }}
-        </button>
-        <button
-          v-for="tech in allTechnologies"
-          :key="tech"
-          :class="['filter-btn', { active: selectedFilter === tech }]"
-          @click="selectedFilter = tech"
-        >
-          {{ tech }}
-        </button>
-      </div>
+      <!-- Carousel Container -->
+      <div class="carousel-wrapper">
+        <div class="carousel-container" ref="carouselContainer">
+          <div
+            class="carousel-track"
+            :style="{ transform: `translateX(-${currentIndex * cardWidth}px)` }"
+          >
+            <div
+              v-for="project in projects"
+              :key="project.id"
+              class="project-card"
+            >
+              <div class="project-image">
+                <img :src="project.image" :alt="project.title" />
+                <div class="project-overlay">
+                  <h3 class="project-title">{{ project.title }}</h3>
+                  <p class="project-author">{{ project.author }}</p>
+                  <p class="project-role">{{ project.role }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <!-- Projects grid -->
-      <div class="projects-grid">
-        <div
-          v-for="project in filteredProjects"
-          :key="project.id"
-          class="project-card"
-        >
-          <div class="project-image">
-            <img :src="project.image" :alt="project.title" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">{{ project.title }}</h3>
-            <p class="project-description">{{ project.description }}</p>
-            <div class="project-tech">
-              <span v-for="tech in project.technologies" :key="tech" class="tech-tag">
-                {{ tech }}
-              </span>
-            </div>
-            <div class="project-links">
-              <a v-if="project.demo" :href="project.demo" target="_blank" class="project-link">
-                <span>{{ $t('projects.demo') }}</span>
-              </a>
-              <a v-if="project.code" :href="project.code" target="_blank" class="project-link">
-                <span>{{ $t('projects.code') }}</span>
-              </a>
-            </div>
-          </div>
+        <!-- Navigation Buttons -->
+        <div class="carousel-nav">
+          <button
+            class="nav-btn prev"
+            @click="prevSlide"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button
+            class="nav-btn next"
+            @click="nextSlide"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -56,66 +53,125 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-const selectedFilter = ref('all')
+const currentIndex = ref(0)
+const carouselContainer = ref(null)
+const cardWidth = ref(400)
+const visibleCards = ref(3)
+const isTransitioning = ref(false)
 
-const projects = computed(() => [
+const originalProjects = [
   {
     id: 1,
-    title: t('projects.sampleProjects.ecommerce.title'),
-    description: t('projects.sampleProjects.ecommerce.description'),
-    image: 'https://via.placeholder.com/400x250',
-    technologies: ['Vue.js', 'Node.js', 'MongoDB'],
-    demo: 'https://example.com',
-    code: 'https://github.com'
+    title: 'The Sky-Dweller is a compelling timepiece of contemporary design.',
+    author: 'John Doe',
+    role: 'CEO, Company Name',
+    image: 'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600&h=800&fit=crop'
   },
   {
     id: 2,
-    title: t('projects.sampleProjects.taskManager.title'),
-    description: t('projects.sampleProjects.taskManager.description'),
-    image: 'https://via.placeholder.com/400x250',
-    technologies: ['React', 'Firebase', 'TypeScript'],
-    demo: 'https://example.com',
-    code: 'https://github.com'
+    title: 'The Sky-Dweller is a compelling timepiece of contemporary design.',
+    author: 'John Doe',
+    role: 'CEO, Company Name',
+    image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=600&h=800&fit=crop'
   },
   {
     id: 3,
-    title: t('projects.sampleProjects.weather.title'),
-    description: t('projects.sampleProjects.weather.description'),
-    image: 'https://via.placeholder.com/400x250',
-    technologies: ['Vue.js', 'API', 'CSS'],
-    demo: 'https://example.com',
-    code: 'https://github.com'
+    title: 'The Sky-Dweller is a compelling timepiece of contemporary design.',
+    author: 'John Doe',
+    role: 'CEO, Company Name',
+    image: 'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=600&h=800&fit=crop'
   },
   {
     id: 4,
-    title: t('projects.sampleProjects.blog.title'),
-    description: t('projects.sampleProjects.blog.description'),
-    image: 'https://via.placeholder.com/400x250',
-    technologies: ['Node.js', 'Express', 'PostgreSQL'],
-    demo: 'https://example.com',
-    code: 'https://github.com'
+    title: 'The Sky-Dweller is a compelling timepiece of contemporary design.',
+    author: 'John Doe',
+    role: 'CEO, Company Name',
+    image: 'https://images.unsplash.com/photo-1549480017-d76466a4b7e8?w=600&h=800&fit=crop'
   }
-])
+]
 
-const allTechnologies = computed(() => {
-  const techSet = new Set()
-  projects.value.forEach(project => {
-    project.technologies.forEach(tech => techSet.add(tech))
-  })
-  return Array.from(techSet)
+// Create infinite loop by duplicating projects array
+const projects = computed(() => {
+  return [...originalProjects, ...originalProjects, ...originalProjects]
 })
 
-const filteredProjects = computed(() => {
-  if (selectedFilter.value === 'all') {
-    return projects.value
+const updateCardWidth = () => {
+  if (carouselContainer.value) {
+    const containerWidth = carouselContainer.value.offsetWidth
+    if (window.innerWidth <= 768) {
+      visibleCards.value = 1
+      cardWidth.value = containerWidth
+    } else if (window.innerWidth <= 1024) {
+      visibleCards.value = 2
+      cardWidth.value = containerWidth / 2
+    } else {
+      visibleCards.value = 3
+      cardWidth.value = containerWidth / 3
+    }
   }
-  return projects.value.filter(project =>
-    project.technologies.includes(selectedFilter.value)
-  )
+}
+
+const nextSlide = () => {
+  if (isTransitioning.value) return
+
+  isTransitioning.value = true
+  currentIndex.value++
+
+  setTimeout(() => {
+    // Reset to first set when reaching the end of second set
+    if (currentIndex.value >= originalProjects.length * 2) {
+      isTransitioning.value = false
+      currentIndex.value = originalProjects.length
+      // Remove transition temporarily for instant jump
+      const track = document.querySelector('.carousel-track')
+      track.style.transition = 'none'
+
+      setTimeout(() => {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+      }, 50)
+    } else {
+      isTransitioning.value = false
+    }
+  }, 600)
+}
+
+const prevSlide = () => {
+  if (isTransitioning.value) return
+
+  isTransitioning.value = true
+  currentIndex.value--
+
+  setTimeout(() => {
+    // Reset to second set when reaching the start of first set
+    if (currentIndex.value < originalProjects.length) {
+      isTransitioning.value = false
+      currentIndex.value = originalProjects.length * 2 - 1
+      // Remove transition temporarily for instant jump
+      const track = document.querySelector('.carousel-track')
+      track.style.transition = 'none'
+
+      setTimeout(() => {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+      }, 50)
+    } else {
+      isTransitioning.value = false
+    }
+  }, 600)
+}
+
+onMounted(() => {
+  updateCardWidth()
+  window.addEventListener('resize', updateCardWidth)
+  // Start at the middle set for seamless looping
+  currentIndex.value = originalProjects.length
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateCardWidth)
 })
 </script>
 
@@ -128,7 +184,7 @@ const filteredProjects = computed(() => {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -142,121 +198,132 @@ const filteredProjects = computed(() => {
 .section-subtitle {
   text-align: center;
   color: #6c757d;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   font-size: 1.1rem;
 }
 
-.filter-buttons {
+.carousel-wrapper {
+  position: relative;
+  padding: 0 60px;
+}
+
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-
-.filter-btn {
-  padding: 0.5rem 1.5rem;
-  border: 2px solid #667eea;
-  background: white;
-  color: #667eea;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-  background: #667eea;
-  color: white;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
+  gap: 20px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card {
-  background: white;
-  border-radius: 10px;
+  flex: 0 0 calc(33.333% - 14px);
+  min-width: calc(33.333% - 14px);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  height: 500px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
 }
 
 .project-image {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  height: 100%;
+  position: relative;
 }
 
 .project-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .project-card:hover .project-image img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-.project-content {
-  padding: 1.5rem;
+.project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  padding: 2.5rem 2rem;
+  color: white;
 }
 
 .project-title {
-  font-size: 1.5rem;
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-.project-description {
-  color: #6c757d;
+  font-size: 1.2rem;
+  font-weight: 400;
   line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.tech-tag {
-  background: #e9ecef;
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.85rem;
-  color: #495057;
-}
-
-.project-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.project-link {
-  flex: 1;
-  text-align: center;
-  padding: 0.6rem 1rem;
-  background: #667eea;
+  margin-bottom: 1.5rem;
   color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: 600;
-  transition: background 0.3s;
 }
 
-.project-link:hover {
-  background: #5568d3;
+.project-author {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.project-role {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Navigation Buttons */
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #667eea;
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.nav-btn:hover:not(:disabled) svg {
+  stroke: white;
+}
+
+
+.nav-btn svg {
+  stroke: #2c3e50;
+  transition: stroke 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .project-card {
+    flex: 0 0 calc(50% - 10px);
+    min-width: calc(50% - 10px);
+    height: 450px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -265,8 +332,54 @@ const filteredProjects = computed(() => {
     padding-top: calc(70px + 3rem);
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
+  .carousel-wrapper {
+    padding: 0 40px;
+  }
+
+  .project-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    height: 500px;
+  }
+
+  .carousel-track {
+    gap: 15px;
+  }
+
+  .project-title {
+    font-size: 1rem;
+  }
+
+  .nav-btn {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-wrapper {
+    padding: 0 30px;
+  }
+
+  .project-card {
+    height: 400px;
+  }
+
+  .project-overlay {
+    padding: 1.5rem 1rem;
+  }
+
+  .project-title {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-author {
+    font-size: 1rem;
+  }
+
+  .project-role {
+    font-size: 0.85rem;
   }
 }
 </style>
