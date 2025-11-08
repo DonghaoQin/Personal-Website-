@@ -20,6 +20,35 @@ export default {
     all: '全部',
     demo: '演示',
     code: '代码',
+    technologiesUsed: '使用技术',
+    viewLive: '查看在线演示',
+    viewCode: '查看源代码',
+    details: {
+      ecommerce: {
+        title: 'Hello Auslan — 互动手语学习平台',
+        shortDesc: 'Auslan手语互动学习平台',
+        description: 'Hello Auslan是一个现代化的网络平台，旨在帮助家庭、教育工作者和学生以有趣和互动的方式学习Auslan手语。该平台结合了视觉故事讲述、互动游戏和进度跟踪，使各年龄段的人都能轻松学习手语。用户可以探索字母与数字、基础词汇和故事书模式等模块，每个模块都配有动态动画、手势识别和实时反馈。Hello Auslan高度关注可访问性和用户体验，赋能学校和家长在日常生活中支持包容性沟通。',
+        technologies: 'React, Vite, Node.js, AWS Amplify, S3, Tailwind CSS, Framer Motion, REST API集成'
+      },
+      taskManager: {
+        title: '老年人群 — 智能健康与护理平台',
+        shortDesc: '为老年护理提供全面数字化支持',
+        description: '一个响应式网络平台，旨在改善老年人的数字医疗服务访问。\n\n该项目具有安全认证、实时地图导航和使用OpenAI的AI辅助问答功能。\n\n还包括服务列表、反馈互动和自动新闻更新。\n\n以可访问性和易用性为设计理念，界面在各种设备上提供流畅、直观的体验。',
+        technologies: 'React, Node.js, Express, MongoDB, OpenAI API, Google Maps API, RESTful API, Tailwind CSS, JWT认证'
+      },
+      weather: {
+        title: '天气仪表板',
+        shortDesc: '精美的天气预报和实时天气状况',
+        description: '一个优雅的天气仪表板，提供全面的天气信息，包括当前状况、每小时预报、7天预报和天气警报。应用具有基于位置的天气检测、多城市搜索功能、交互式天气地图和详细的气象数据。专注于视觉设计和数据可视化，让天气信息既美观又易于访问。',
+        technologies: 'React, OpenWeatherMap API, Chart.js, 地理定位API, Axios, Styled Components'
+      },
+      blog: {
+        title: '博客平台',
+        shortDesc: '支持Markdown和社交功能的现代博客',
+        description: '一个功能丰富的博客平台，支持Markdown编辑、代码片段语法高亮、嵌套回复评论系统、用户个人资料、社交分享功能和SEO优化。平台包括富文本编辑器、图片上传功能、文章分类和标签、搜索功能以及RSS订阅生成。专为重视功能性和美学的开发者和内容创作者设计。',
+        technologies: 'Next.js, React, Node.js, MongoDB, Markdown-it, Prism.js, Next-Auth, TailwindCSS'
+      }
+    },
     sampleProjects: {
       ecommerce: {
         title: '电商平台',
