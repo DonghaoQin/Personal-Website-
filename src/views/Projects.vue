@@ -159,19 +159,20 @@ const originalProjects = [
     shortDesc: t('projects.details.weather.shortDesc'),
     author: 'John Doe',
     role: 'UI/UX Developer',
-    image: 'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=600&h=800&fit=crop',
+    image: '/images/projects/food%20donation.png', // new image from /public
     detailedDescription: t('projects.details.weather.description'),
     technologies: t('projects.details.weather.technologies'),
-    demoLink: 'https://example.com/weather-dashboard',
+    demoLink: 'https://www.figma.com/design/auTtnrCAqfinN0HGTe7NMN/5152?node-id=0-1&t=F60kfU6pGvtAnWfD-1',
     githubLink: 'https://github.com/yourusername/weather-dashboard'
   },
+
   {
     id: 4,
     title: t('projects.details.blog.title'),
     shortDesc: t('projects.details.blog.shortDesc'),
     author: 'John Doe',
     role: 'Backend Developer',
-    image: 'https://images.unsplash.com/photo-1549480017-d76466a4b7e8?w=600&h=800&fit=crop',
+    image: '/images/projects/ecoparking.png',
     detailedDescription: t('projects.details.blog.description'),
     technologies: t('projects.details.blog.technologies'),
     demoLink: 'https://example.com/blog-platform',

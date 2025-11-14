@@ -37,16 +37,16 @@ export default {
         technologies: 'React, Node.js, Express, MongoDB, OpenAI API, Google Maps API, RESTful API, Tailwind CSS, JWT认证'
       },
       weather: {
-        title: '天气仪表板',
+        title: '食物捐赠与公益互助平台',
         shortDesc: '精美的天气预报和实时天气状况',
-        description: '一个优雅的天气仪表板，提供全面的天气信息，包括当前状况、每小时预报、7天预报和天气警报。应用具有基于位置的天气检测、多城市搜索功能、交互式天气地图和详细的气象数据。专注于视觉设计和数据可视化，让天气信息既美观又易于访问。',
+        description: 'FoodShare 是一套端到端 UI/UX 设计方案，目标是让“食物捐赠”这件事不再复杂、也不用靠猜。它把 食物识别、捐赠匹配、社区互动与公益点位导航 整合到同一个 App 里，让普通用户、社区机构和食物银行之间的流程真正顺畅起来',
         technologies: 'React, OpenWeatherMap API, Chart.js, 地理定位API, Axios, Styled Components'
       },
       blog: {
-        title: '博客平台',
+        title: 'Melbourne Parking — 实时停车可视化平台',
         shortDesc: '支持Markdown和社交功能的现代博客',
-        description: '一个功能丰富的博客平台，支持Markdown编辑、代码片段语法高亮、嵌套回复评论系统、用户个人资料、社交分享功能和SEO优化。平台包括富文本编辑器、图片上传功能、文章分类和标签、搜索功能以及RSS订阅生成。专为重视功能性和美学的开发者和内容创作者设计。',
-        technologies: 'Next.js, React, Node.js, MongoDB, Markdown-it, Prism.js, Next-Auth, TailwindCSS'
+        description: 'Melbourne Parking 是一个面向墨尔本市区的智能停车平台，旨在帮助驾驶者、通勤者和访客快速找到可停车的位置。平台整合了官方实时路侧停车数据，并将其以清晰直观的方式展示在交互式地图上，让用户随时了解街道和停车场的使用情况。用户可以在地图中探索每个街区的停车状态，包括空置（绿）、占用（红）、未知（黄）等标记。点击任意车位即可查看详细信息，如车位编号、当前状态、最后更新时间以及精确经纬度。同时提供地点搜索、自动刷新、实时提示等功能，让寻找停车位变得更轻松、更高效。',
+        technologies: 'React、Vite、Node.js、Python、Leaflet、OpenStreetMap、REST API 数据集成'
       }
     },
     sampleProjects: {
