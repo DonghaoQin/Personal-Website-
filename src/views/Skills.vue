@@ -1,41 +1,60 @@
 <template>
-  <section id="skills" class="skills">
+  <section id="about" class="about">
     <div class="container">
-      <h2 class="section-title">{{ $t('skills.title') }}</h2>
-      <p class="section-subtitle">{{ $t('skills.subtitle') }}</p>
+      <h2 class="section-title">{{ $t('about.title') }}</h2>
+      <p class="section-subtitle">{{ $t('about.subtitle') }}</p>
 
-      <!-- Skills Grid -->
-      <div class="skills-section">
-        <h3 class="subsection-title">{{ $t('skills.technicalSkills') }}</h3>
-        <div class="skills-grid">
-          <div v-for="category in skillCategories" :key="category.name" class="skill-category">
-            <h4 class="category-title">{{ category.name }}</h4>
-            <div class="skill-items">
-              <div v-for="skill in category.skills" :key="skill.name" class="skill-item">
-                <div class="skill-header">
-                  <span class="skill-name">{{ skill.name }}</span>
-                  <span class="skill-level">{{ skill.level }}%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" :style="{ width: skill.level + '%' }"></div>
-                </div>
-              </div>
+      <!-- Professional Introduction -->
+      <div class="about-section professional-section">
+        <div class="section-header">
+          <h3 class="subsection-title">{{ $t('about.professional.title') }}</h3>
+        </div>
+        <div class="professional-content">
+          <div class="role-badge">{{ $t('about.professional.role') }}</div>
+          <p class="description">{{ $t('about.professional.description') }}</p>
+          <div class="tech-stack">
+            <span class="tech-label">{{ $t('about.professional.techStack') }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- What Drives Me -->
+      <div class="about-section motivation-section">
+        <div class="section-header">
+          <h3 class="subsection-title">{{ $t('about.motivation.title') }}</h3>
+        </div>
+        <div class="motivation-content">
+          <p class="description">{{ $t('about.motivation.description') }}</p>
+          <div class="interests-grid">
+            <div v-for="(interest, index) in $t('about.motivation.interests')" :key="index" class="interest-item">
+              <span class="interest-icon">✓</span>
+              <span class="interest-text">{{ interest }}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Timeline -->
-      <div class="timeline-section">
-        <h3 class="subsection-title">{{ $t('skills.experienceEducation') }}</h3>
-        <div class="timeline">
-          <div v-for="(item, index) in timeline" :key="index" class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-date">{{ item.date }}</div>
-              <h4 class="timeline-title">{{ item.title }}</h4>
-              <p class="timeline-company">{{ item.company }}</p>
-              <p class="timeline-description">{{ item.description }}</p>
+      <!-- Education -->
+      <div class="about-section education-section">
+        <div class="section-header">
+          <h3 class="subsection-title">{{ $t('about.education.title') }}</h3>
+        </div>
+        <div class="education-content">
+          <div class="education-header">
+            <div class="education-main">
+              <h4 class="degree">{{ $t('about.education.degree') }}</h4>
+              <p class="institution">{{ $t('about.education.institution') }}</p>
+              <p class="period">{{ $t('about.education.period') }}</p>
+            </div>
+          </div>
+          <p class="description">{{ $t('about.education.description') }}</p>
+          <div class="highlights">
+            <h5 class="highlights-title">Key Areas of Study:</h5>
+            <div class="highlights-grid">
+              <div v-for="(highlight, index) in $t('about.education.highlights')" :key="index" class="highlight-item">
+                <span class="highlight-dot"></span>
+                <span class="highlight-text">{{ highlight }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -45,79 +64,21 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-
-const skillCategories = computed(() => [
-  {
-    name: t('skills.categories.frontend'),
-    skills: [
-      { name: 'Vue.js', level: 90 },
-      { name: 'React', level: 85 },
-      { name: 'HTML/CSS', level: 95 },
-      { name: 'JavaScript/TypeScript', level: 90 }
-    ]
-  },
-  {
-    name: t('skills.categories.backend'),
-    skills: [
-      { name: 'Node.js', level: 85 },
-      { name: 'Python', level: 80 },
-      { name: 'Express', level: 85 },
-      { name: 'REST APIs', level: 90 }
-    ]
-  },
-  {
-    name: t('skills.categories.database'),
-    skills: [
-      { name: 'MongoDB', level: 80 },
-      { name: 'PostgreSQL', level: 75 },
-      { name: 'Git', level: 90 },
-      { name: 'Docker', level: 70 }
-    ]
-  }
-])
-
-const timeline = computed(() => [
-  {
-    date: '2023 - Present',
-    title: t('skills.timeline.senior.title'),
-    company: t('skills.timeline.senior.company'),
-    description: t('skills.timeline.senior.description')
-  },
-  {
-    date: '2021 - 2023',
-    title: t('skills.timeline.fullstack.title'),
-    company: t('skills.timeline.fullstack.company'),
-    description: t('skills.timeline.fullstack.description')
-  },
-  {
-    date: '2019 - 2021',
-    title: t('skills.timeline.frontend.title'),
-    company: t('skills.timeline.frontend.company'),
-    description: t('skills.timeline.frontend.description')
-  },
-  {
-    date: '2015 - 2019',
-    title: t('skills.timeline.education.title'),
-    company: t('skills.timeline.education.company'),
-    description: t('skills.timeline.education.description')
-  }
-])
 </script>
 
 <style scoped>
-.skills {
+.about {
   padding: 5rem 2rem;
-  background: white;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   min-height: calc(100vh - 70px);
   padding-top: calc(70px + 5rem);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -135,154 +96,229 @@ const timeline = computed(() => [
   font-size: 1.1rem;
 }
 
-.skills-section {
-  margin-bottom: 5rem;
+.about-section {
+  margin-bottom: 4rem;
+  background: white;
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.section-header {
+  margin-bottom: 2rem;
 }
 
 .subsection-title {
-  font-size: 2rem;
-  color: #2c3e50;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.skill-category {
-  background: #f8f9fa;
-  padding: 2rem;
-  border-radius: 10px;
-}
-
-.category-title {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   color: #667eea;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
+  margin-bottom: 0;
+  position: relative;
+  display: inline-block;
 }
 
-.skill-items {
+.subsection-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+/* Professional Section */
+.professional-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.skill-name {
+.role-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
   font-weight: 600;
-  color: #2c3e50;
+  font-size: 1rem;
+  align-self: flex-start;
 }
 
-.skill-level {
-  color: #667eea;
-  font-weight: 600;
-}
-
-.skill-bar {
-  height: 10px;
-  background: #e9ecef;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 5px;
-  transition: width 1s ease;
-}
-
-.timeline-section {
-  margin-top: 5rem;
-}
-
-.timeline {
-  position: relative;
-  padding-left: 2rem;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, #667eea, #764ba2);
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: 3rem;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -2.5rem;
-  top: 0;
-  width: 15px;
-  height: 15px;
-  background: #667eea;
-  border: 3px solid white;
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px #667eea;
-}
-
-.timeline-content {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-left: 1rem;
-}
-
-.timeline-date {
-  color: #667eea;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-title {
-  font-size: 1.3rem;
-  color: #2c3e50;
-  margin-bottom: 0.3rem;
-}
-
-.timeline-company {
-  color: #6c757d;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-}
-
-.timeline-description {
+.description {
   color: #495057;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.tech-stack {
+  background: #f8f9fa;
+  padding: 1.2rem;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+}
+
+.tech-label {
+  color: #2c3e50;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
+/* Motivation Section */
+.motivation-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.interest-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.interest-item:hover {
+  background: #e9ecef;
+}
+
+.interest-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.interest-text {
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+/* Education Section */
+.education-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f8f9fa;
+}
+
+.education-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.degree {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600;
+}
+
+.institution {
+  color: #667eea;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.period {
+  color: #6c757d;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.highlights {
+  margin-top: 1rem;
+}
+
+.highlights-title {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.highlight-dot {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.highlight-text {
+  color: #495057;
+  font-size: 0.95rem;
+}
+
 @media (max-width: 768px) {
-  .skills {
+  .about {
     padding: 3rem 1rem;
     padding-top: calc(70px + 3rem);
   }
 
-  .skills-grid {
+  .about-section {
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .subsection-title {
+    font-size: 1.5rem;
+  }
+
+  .interests-grid,
+  .highlights-grid {
     grid-template-columns: 1fr;
   }
 
-  .timeline {
-    padding-left: 1.5rem;
-  }
-
-  .timeline-dot {
-    left: -2.25rem;
+  .education-header {
+    flex-direction: column;
   }
 }
 </style>

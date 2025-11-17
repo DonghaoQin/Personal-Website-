@@ -10,7 +10,7 @@
             <router-link to="/projects" class="nav-link" @click="closeMenu">{{ $t('nav.projects') }}</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/skills" class="nav-link" @click="closeMenu">{{ $t('nav.skills') }}</router-link>
+            <router-link to="/about" class="nav-link" @click="closeMenu">{{ $t('nav.about') }}</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/contact" class="nav-link" @click="closeMenu">{{ $t('nav.contact') }}</router-link>

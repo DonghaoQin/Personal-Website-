@@ -16,8 +16,8 @@ const routes = [
     component: Projects
   },
   {
-    path: '/skills',
-    name: 'Skills',
+    path: '/about',
+    name: 'About',
     component: Skills
   },
   {

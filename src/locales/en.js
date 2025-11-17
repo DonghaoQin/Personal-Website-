@@ -2,12 +2,12 @@
   nav: {
     home: 'Home',
     projects: 'Projects',
-    skills: 'Skills',
+    about: 'About Me',
     contact: 'Contact'
   },
   hero: {
     greeting: "Hi, I'm",
-    name: 'Your Name',
+    name: 'Qin Donghao',
     title: 'Full Stack Developer | Problem Solver | Tech Enthusiast',
     description: "I'm a passionate developer who loves building modern web applications and solving complex problems. Welcome to my portfolio where I showcase my journey and projects.",
     viewProjects: 'View Projects',
@@ -68,45 +68,46 @@
       }
     }
   },
-  skills: {
-    title: 'Skills & Experience',
-    subtitle: 'My technical expertise and professional journey',
-    technicalSkills: 'Technical Skills',
-    experienceEducation: 'Experience & Education',
-    categories: {
-      frontend: 'Frontend',
-      backend: 'Backend',
-      database: 'Database & Tools'
+  about: {
+    title: 'About Me',
+    subtitle: 'Getting to know me better',
+    professional: {
+      title: 'Professional Introduction',
+      role: 'Full Stack Developer',
+      description: 'I\'m a passionate full stack developer with expertise in building modern, scalable web applications. My technical stack centers around Vue.js, React, and Node.js, complemented by experience with Python, MongoDB, and cloud technologies like AWS. I specialize in creating intuitive user interfaces and robust backend systems that solve real-world problems.',
+      techStack: 'Core Technologies: Vue.js, React, Node.js, Python, JavaScript/TypeScript, MongoDB, PostgreSQL, REST APIs, Git'
     },
-    timeline: {
-      senior: {
-        title: 'Senior Full Stack Developer',
-        company: 'Tech Company Inc.',
-        description: 'Leading development of modern web applications using Vue.js and Node.js. Mentoring junior developers and architecting scalable solutions.'
-      },
-      fullstack: {
-        title: 'Full Stack Developer',
-        company: 'Startup XYZ',
-        description: 'Developed and maintained multiple client projects. Worked with React, Vue.js, and Node.js to deliver high-quality web applications.'
-      },
-      frontend: {
-        title: 'Frontend Developer',
-        company: 'Digital Agency',
-        description: 'Built responsive and interactive user interfaces. Collaborated with designers and backend developers to create seamless user experiences.'
-      },
-      education: {
-        title: 'Bachelor of Computer Science',
-        company: 'University Name',
-        description: 'Studied computer science fundamentals, algorithms, data structures, and software engineering principles.'
-      }
+    motivation: {
+      title: 'What Drives Me',
+      description: 'I\'m driven by the challenge of turning complex problems into elegant, user-friendly solutions. What excites me most is building applications that make a genuine difference in people\'s lives - whether it\'s improving accessibility for the elderly, helping families learn sign language, or creating platforms that connect communities. I enjoy the entire development process: from understanding user needs and designing thoughtful interfaces, to architecting scalable systems and optimizing performance. The intersection of technology and human impact is where I thrive.',
+      interests: [
+        'Building accessible and inclusive applications',
+        'Solving complex UX/UI challenges',
+        'Optimizing performance and scalability',
+        'Learning new technologies and best practices'
+      ]
+    },
+    education: {
+      title: 'Education',
+      degree: 'Bachelor of Computer Science',
+      institution: 'University Name',
+      period: '2015 - 2019',
+      description: 'Comprehensive study of computer science fundamentals including algorithms, data structures, software engineering principles, database systems, and web technologies. Developed strong problem-solving skills and a solid foundation in both theoretical and practical aspects of software development.',
+      highlights: [
+        'Algorithms & Data Structures',
+        'Software Engineering Principles',
+        'Database Systems',
+        'Web Development',
+        'System Design'
+      ]
     }
   },
   contact: {
     title: 'Get In Touch',
-    subtitle: 'Feel free to reach out for opportunities or just to say hi!',
+    subtitle: 'Feel free to reach out or just to say hi!',
     email: 'Email',
     github: 'GitHub',
-    linkedin: 'LinkedIn',
+    wechat: 'WeChat',
     phone: 'Phone',
     connectWithMe: 'Connect With Me',
     footer: 'Built with Vue.js'
