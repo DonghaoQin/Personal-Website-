@@ -102,6 +102,30 @@
       ]
     }
   },
+  aboutMe: {
+    sections: [
+      {
+        title: 'Hello! Nice to Meet You',
+        content: 'I\'m Qin Donghao, a passionate full-stack developer dedicated to creating meaningful digital experiences. I believe technology should serve people, making their lives easier and more connected.'
+      },
+      {
+        title: 'My Technical Journey',
+        content: 'Specialized in Vue.js, React, and Node.js, I build modern web applications that are both beautiful and functional. From intuitive frontends to robust backends, I enjoy every aspect of the development process.'
+      },
+      {
+        title: 'What I Build',
+        content: 'I\'ve worked on diverse projects - from sign language learning platforms to elderly care solutions, from parking visualization systems to community support apps. Each project is an opportunity to make a positive impact.'
+      },
+      {
+        title: 'My Approach',
+        content: 'I focus on clean code, user-centered design, and scalable architecture. Whether it\'s optimizing performance, ensuring accessibility, or integrating cutting-edge technologies, I strive for excellence in every detail.'
+      },
+      {
+        title: 'Let\'s Connect',
+        content: 'I\'m always excited to collaborate on innovative projects and discuss new ideas. If you\'re looking for a developer who combines technical expertise with genuine passion, let\'s talk!'
+      }
+    ]
+  },
   contact: {
     title: 'Get In Touch',
     subtitle: 'Feel free to reach out or just to say hi!',
@@ -111,6 +135,10 @@
     phone: 'Phone',
     connectWithMe: 'Connect With Me',
     footer: 'Built with Vue.js'
+  },
+  loading: {
+    title: 'Loading 3D Model',
+    hint: 'This may take a moment...'
   }
 }
 
